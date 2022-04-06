@@ -20,7 +20,7 @@ public class ListeL<I extends Comparable<I>> {
 		head = new ElementL<I>(o);
 	}
 
-	public ElementL<I> insert(I o) { // am Anfang einf�gen
+	public ElementL<I> insert(I o) { // am Anfang einfuegen
 		ElementL<I> newEl = new ElementL<I>(o);
 		if (head == null) { // Liste ist noch leer
 			head = newEl;
@@ -31,12 +31,12 @@ public class ListeL<I extends Comparable<I>> {
 		return newEl;
 	}
 
-	public ElementL<I> insert(I o, ElementL<I> pred) { // nach pred (Vorg�nger) einf�gen
+	public ElementL<I> insert(I o, ElementL<I> pred) { // nach pred (Vorgaenger) einfuegen
 		ElementL<I> newEl = new ElementL<I>(o);
-		if (pred == null) { // am Anfang einf�gen
+		if (pred == null) { // am Anfang einfuegen
 			newEl.next = head;
 			head = newEl;
-		} else { // nach pred (Vorg�nger) einf�gen
+		} else { // nach pred (Vorgaenger) einfuegen
 			newEl.next = pred.next;
 			pred.next = newEl;
 		}
