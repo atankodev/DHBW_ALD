@@ -89,40 +89,13 @@ public class ListeL<I extends Comparable<I>> {
 
 	public void sort2() {
 
-		ElementL<I> pos = head;
-
-		while (pos != null) {
-
-			ElementL<I> help = pos;
-
-			while (help.next != null) {
-
-				if (help.inhalt.compareTo(help.next.inhalt) > 0) {
-
-					I temp = help.next.inhalt;
-					help.next.inhalt = help.inhalt;
-					help.inhalt = temp;
-
-				}
-
-				help = help.next;
-
-			}
-
-			pos = pos.next;
-
-		}
-
-	}
-
-	public void sort22() {
-
 		ElementL<I> help = head;
 		boolean getauscht = true;
 
 		while (getauscht) {
 
 			getauscht = false;
+			help = head;
 
 			while (help.next != null) {
 
@@ -141,6 +114,34 @@ public class ListeL<I extends Comparable<I>> {
 
 		}
 
+	}
+	
+	void sort3() {
+		
+		ElementL<I> pos = head; //letztes Sortiertes
+		ElementL<I> help; //zu Bearbeiten
+		
+		while(pos.next != null) {
+			help = pos.next;
+			if(help.inhalt.compareTo(pos.inhalt) >= 0 ) {
+				pos = help;
+			} else {
+				pos.next = help.next;
+				if(head.inhalt.compareTo(help.inhalt) >= 0) {
+					help.next = head;
+					head = help;
+				} else {
+					ElementL<I> temp = head;
+					while(temp.next != null && temp.next.inhalt.compareTo(help.inhalt) < 0) {
+						temp = temp.next;
+					}
+					help.next = temp.next;
+					temp.next = help;
+				}
+			}
+			
+		}
+		
 	}
 
 	public ElementL<I> insertBefore(I o, ElementL<I> suc) {
@@ -203,9 +204,11 @@ public class ListeL<I extends Comparable<I>> {
 		System.out.println(l);
 		l.remove(eins); // Nachfolger von eins l�schen
 		System.out.println(l);
-		l.sort1();
-		System.out.println(l);
-		l.sort22();
+//		l.sort1();
+//		System.out.println(l);
+//		l.sort2();
+//		System.out.println(l);
+		l.sort3();
 		System.out.println(l);
 	}
 
